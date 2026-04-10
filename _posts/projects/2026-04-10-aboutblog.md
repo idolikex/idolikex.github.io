@@ -7,7 +7,7 @@ meta:
   keywords: "Jekyll, Pineapple"
 
 project:
-  title: "Red Pineapple"
+  title: "A blog about the things I do like"
   type: "Jekyll"
   url: "https://github.com/arnolds/pineapple"
   logo: "/assets/images/projects/redpineapple/logo.png"
