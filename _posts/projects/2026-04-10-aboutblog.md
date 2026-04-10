@@ -8,7 +8,7 @@ meta:
 
 project:
   title: "A blog about the things I do like"
-  type: "Jekyll"
+  subtitle: "What is this blog about?"
   url: "https://github.com/arnolds/pineapple"
   logo: "/assets/images/projects/redpineapple/logo.png"
   tech: "HTML, CSS, Boostrap, Sass, JavaScript, jQuery, Jekyll"
