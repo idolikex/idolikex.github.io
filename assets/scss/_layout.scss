@@ -80,15 +80,39 @@
 }
 
 .likes-keywords-track {
-	display: flex;
-	flex-direction: column;
+	display: block;
+	height: 100%;
+	position: relative;
 	will-change: transform;
 }
 
 .likes-keyword {
 	display: block;
 	line-height: 1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translateY(120%);
+	transition: transform .55s ease, opacity .55s ease;
 	white-space: nowrap;
+	opacity: 0;
+}
+
+.likes-keyword-current {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.likes-keywords-track.is-animating {
+	.likes-keyword-current {
+		opacity: 0;
+		transform: translateY(-120%);
+	}
+
+	.likes-keyword-next {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 .intro {

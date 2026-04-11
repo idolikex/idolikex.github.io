@@ -14,12 +14,21 @@ var keywordContainer = document.querySelector('.likes-keywords');
 if (keywordContainer) {
 	var keywordTrack = keywordContainer.querySelector('.likes-keywords-track');
 	var keywordItems = keywordTrack ? Array.prototype.slice.call(keywordTrack.querySelectorAll('.likes-keyword')) : [];
+	var keywords = keywordItems.map(function (item) {
+		return item.textContent.trim();
+	}).filter(Boolean);
 	var keywordIndex = 0;
-	var rotationDelay = 2200;
-	var transitionDuration = 650;
-	var keywordHeight = 0;
+	var displayDuration = 3000;
+	var transitionDuration = 550;
 
-	if (keywordTrack && keywordItems.length > 0) {
+	if (keywordTrack && keywords.length > 0) {
+		keywordTrack.innerHTML = '' +
+			'<span class="likes-keyword likes-keyword-current"></span>' +
+			'<span class="likes-keyword likes-keyword-next"></span>';
+
+		var currentKeyword = keywordTrack.querySelector('.likes-keyword-current');
+		var nextKeyword = keywordTrack.querySelector('.likes-keyword-next');
+
 		var measureTicker = function () {
 			var maxWidth = 0;
 
@@ -27,31 +36,28 @@ if (keywordContainer) {
 				maxWidth = Math.max(maxWidth, item.offsetWidth);
 			});
 
-			keywordHeight = keywordItems[0].offsetHeight;
 			keywordContainer.style.width = maxWidth + 'px';
-			keywordContainer.style.height = keywordHeight + 'px';
-			keywordTrack.style.transform = 'translateY(-' + (keywordIndex * keywordHeight) + 'px)';
+			keywordContainer.style.height = keywordItems[0].offsetHeight + 'px';
 		};
 
+		currentKeyword.textContent = keywords[0];
+		nextKeyword.textContent = keywords[0];
 		measureTicker();
 		window.addEventListener('resize', measureTicker);
-	}
 
-	if (keywordTrack && keywordItems.length > 1) {
-		keywordTrack.appendChild(keywordItems[0].cloneNode(true));
+		if (keywords.length > 1) {
+			window.setInterval(function () {
+				var nextIndex = (keywordIndex + 1) % keywords.length;
 
-		window.setInterval(function () {
-			keywordIndex += 1;
-			keywordTrack.style.transition = 'transform ' + transitionDuration + 'ms ease';
-			keywordTrack.style.transform = 'translateY(-' + (keywordIndex * keywordHeight) + 'px)';
+				nextKeyword.textContent = keywords[nextIndex];
+				keywordTrack.classList.add('is-animating');
 
-			if (keywordIndex === keywordItems.length) {
 				window.setTimeout(function () {
-					keywordTrack.style.transition = 'none';
-					keywordIndex = 0;
-					keywordTrack.style.transform = 'translateY(0)';
+					keywordIndex = nextIndex;
+					currentKeyword.textContent = keywords[keywordIndex];
+					keywordTrack.classList.remove('is-animating');
 				}, transitionDuration);
-			}
-		}, rotationDelay);
+			}, displayDuration);
+		}
 	}
 }
