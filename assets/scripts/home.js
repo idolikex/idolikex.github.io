@@ -23,28 +23,26 @@ if (keywordContainer) {
 
 	if (keywordTrack && keywords.length > 0) {
 		keywordTrack.innerHTML = '' +
+			'<span class="likes-keyword likes-keyword-sizer" aria-hidden="true"></span>' +
 			'<span class="likes-keyword likes-keyword-current"></span>' +
 			'<span class="likes-keyword likes-keyword-next"></span>';
 
+		var keywordSizer = keywordTrack.querySelector('.likes-keyword-sizer');
 		var currentKeyword = keywordTrack.querySelector('.likes-keyword-current');
 		var nextKeyword = keywordTrack.querySelector('.likes-keyword-next');
 
 		var measureTicker = function () {
-			var maxWidth = 0;
-			var originalCurrentText = currentKeyword.textContent;
+			var longestKeyword = keywords.reduce(function (longest, keyword) {
+				return keyword.length > longest.length ? keyword : longest;
+			}, keywords[0]);
 
-			keywords.forEach(function (keyword) {
-				currentKeyword.textContent = keyword;
-				maxWidth = Math.max(maxWidth, currentKeyword.offsetWidth, currentKeyword.scrollWidth);
-			});
-
-			currentKeyword.textContent = originalCurrentText;
-			keywordContainer.style.width = maxWidth + 'px';
-			keywordContainer.style.height = Math.max(currentKeyword.offsetHeight, currentKeyword.scrollHeight) + 'px';
+			keywordSizer.textContent = longestKeyword;
+			keywordContainer.style.width = keywordSizer.offsetWidth + 'px';
+			keywordContainer.style.height = keywordSizer.offsetHeight + 'px';
 		};
 
 		currentKeyword.textContent = keywords[0];
-		nextKeyword.textContent = keywords[0];
+		nextKeyword.textContent = keywords[1] || keywords[0];
 		measureTicker();
 		window.addEventListener('resize', measureTicker);
 
