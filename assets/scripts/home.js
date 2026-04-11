@@ -31,13 +31,16 @@ if (keywordContainer) {
 
 		var measureTicker = function () {
 			var maxWidth = 0;
+			var originalCurrentText = currentKeyword.textContent;
 
-			keywordItems.forEach(function (item) {
-				maxWidth = Math.max(maxWidth, item.offsetWidth);
+			keywords.forEach(function (keyword) {
+				currentKeyword.textContent = keyword;
+				maxWidth = Math.max(maxWidth, currentKeyword.offsetWidth, currentKeyword.scrollWidth);
 			});
 
+			currentKeyword.textContent = originalCurrentText;
 			keywordContainer.style.width = maxWidth + 'px';
-			keywordContainer.style.height = keywordItems[0].offsetHeight + 'px';
+			keywordContainer.style.height = Math.max(currentKeyword.offsetHeight, currentKeyword.scrollHeight) + 'px';
 		};
 
 		currentKeyword.textContent = keywords[0];
