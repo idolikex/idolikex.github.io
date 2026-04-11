@@ -12,7 +12,12 @@ sr.reveal('.posts-list a');
 var keywordContainer = document.querySelector('.likes-keywords');
 
 if (keywordContainer) {
-	var keywords = JSON.parse(keywordContainer.getAttribute('data-keywords') || '[]');
+	var keywords = (keywordContainer.getAttribute('data-keywords') || '')
+		.split('||')
+		.map(function (keyword) {
+			return keyword.trim();
+		})
+		.filter(Boolean);
 	var currentKeyword = keywordContainer.querySelector('.likes-keyword-current');
 	var nextKeyword = keywordContainer.querySelector('.likes-keyword-next');
 	var keywordIndex = 0;
