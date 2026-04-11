@@ -10,7 +10,7 @@ project:
   title: "A blog about the things I do like"
   subtitle: "What is this blog about?"
   url: "https://github.com/arnolds/pineapple"
-  logo: "/assets/images/projects/redpineapple/logo.png"
+  logo: "/assets/images/projects/redpineapple/newlogo.png"
   tech: "HTML, CSS, Boostrap, Sass, JavaScript, jQuery, Jekyll"
 
 agency:
