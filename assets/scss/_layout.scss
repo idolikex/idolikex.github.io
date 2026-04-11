@@ -96,12 +96,13 @@
 	display: block;
 	overflow: hidden;
 	position: relative;
-	height: 1em;
+	height: 1.15em;
+	padding-bottom: 0.08em;
 }
 
 .likes-keyword {
 	display: inline-block;
-	line-height: 1;
+	line-height: 1.1;
 	position: absolute;
 	top: 0;
 	left: 0;
