@@ -48,7 +48,7 @@
 }
 
 .likes-marquee {
-	padding: 0 0 5rem;
+	padding: 0 0 6rem;
 
 	.container {
 		overflow: hidden;
@@ -56,39 +56,37 @@
 }
 
 .likes-marquee-inner {
-	align-items: baseline;
+	align-items: center;
 	display: flex;
-	flex-wrap: wrap;
-	gap: 1.2rem;
+	gap: 1.6rem;
+	justify-content: center;
 	line-height: 1;
+	text-align: center;
+	white-space: nowrap;
 }
 
 .likes-prefix,
 .likes-keywords {
-	font-size: 4.8rem;
+	font-size: clamp(4.8rem, 10vw, 9.6rem);
 	font-weight: 600;
-
-	@media (min-width: $breakpoint-medium) {
-		font-size: 8rem;
-	}
 }
 
 .likes-keywords {
 	display: inline-flex;
-	height: 1em;
+	flex: 0 0 auto;
 	overflow: hidden;
 	position: relative;
+	vertical-align: top;
 }
 
 .likes-keywords-track {
 	display: flex;
 	flex-direction: column;
-	transition: transform .6s ease;
+	will-change: transform;
 }
 
 .likes-keyword {
 	display: block;
-	height: 1em;
 	line-height: 1;
 	white-space: nowrap;
 }
