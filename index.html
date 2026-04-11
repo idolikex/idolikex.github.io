@@ -16,12 +16,15 @@
 			<div class="container">
 				<div class="likes-marquee-inner">
 					<span class="likes-prefix">i do like</span>
-					<div class="likes-keywords">
-						<div class="likes-keywords-track">
-							{% for keyword in site.like_keywords %}
-								<span class="likes-keyword">{{ keyword }}</span>
-							{% endfor %}
-						</div>
+					<div class="likes-keywords" data-keywords='{{ site.like_keywords | jsonify | escape }}'>
+						<span class="likes-keyword-sizer" aria-hidden="true">
+							{% assign longest_keyword = site.like_keywords | sort: "size" | last %}
+							{{ longest_keyword }}
+						</span>
+						<span class="likes-keyword-slot">
+							<span class="likes-keyword likes-keyword-current">{{ site.like_keywords.first }}</span>
+							<span class="likes-keyword likes-keyword-next" aria-hidden="true"></span>
+						</span>
 					</div>
 				</div>
 			</div>

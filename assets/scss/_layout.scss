@@ -72,22 +72,35 @@
 }
 
 .likes-keywords {
-	display: inline-flex;
+	display: inline-grid;
 	flex: 0 0 auto;
-	overflow: hidden;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr;
 	position: relative;
 	vertical-align: top;
 }
 
-.likes-keywords-track {
-	display: inline-block;
-	height: 1em;
+.likes-keyword-sizer,
+.likes-keyword-slot {
+	grid-column: 1;
+	grid-row: 1;
+	white-space: nowrap;
+}
+
+.likes-keyword-sizer {
+	visibility: hidden;
+	pointer-events: none;
+}
+
+.likes-keyword-slot {
+	display: block;
+	overflow: hidden;
 	position: relative;
-	width: 100%;
+	height: 1em;
 }
 
 .likes-keyword {
-	display: block;
+	display: inline-block;
 	line-height: 1;
 	position: absolute;
 	top: 0;
@@ -98,20 +111,12 @@
 	opacity: 0;
 }
 
-.likes-keyword-sizer {
-	position: static;
-	visibility: hidden;
-	opacity: 0;
-	transform: none;
-	pointer-events: none;
-}
-
 .likes-keyword-current {
 	opacity: 1;
 	transform: translateY(0);
 }
 
-.likes-keywords-track.is-animating {
+.likes-keywords.is-animating {
 	.likes-keyword-current {
 		opacity: 0;
 		transform: translateY(-120%);
