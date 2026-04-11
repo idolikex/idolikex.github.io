@@ -47,6 +47,52 @@
 	padding: 0 0 5rem;
 }
 
+.likes-marquee {
+	padding: 0 0 5rem;
+
+	.container {
+		overflow: hidden;
+	}
+}
+
+.likes-marquee-inner {
+	align-items: baseline;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.2rem;
+	line-height: 1;
+}
+
+.likes-prefix,
+.likes-keywords {
+	font-size: 4.8rem;
+	font-weight: 600;
+
+	@media (min-width: $breakpoint-medium) {
+		font-size: 8rem;
+	}
+}
+
+.likes-keywords {
+	display: inline-flex;
+	height: 1em;
+	overflow: hidden;
+	position: relative;
+}
+
+.likes-keywords-track {
+	display: flex;
+	flex-direction: column;
+	transition: transform .6s ease;
+}
+
+.likes-keyword {
+	display: block;
+	height: 1em;
+	line-height: 1;
+	white-space: nowrap;
+}
+
 .intro {
 	@media (min-width: $breakpoint-medium) {
 		p {
